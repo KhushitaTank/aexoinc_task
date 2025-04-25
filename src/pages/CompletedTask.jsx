@@ -18,7 +18,7 @@ function CompletedTask() {
     });
   };
   return (
-    <div className=" h-full  flex items-center justify-center w-full ">
+    <div className=" h-full  flex items-center justify-center w-full p-4">
       <List todosList={todosList} toggleCompletion={toggleCompletion} />
     </div>
   );
