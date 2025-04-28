@@ -10,9 +10,10 @@ function Home() {
   const { todos, saveTodos } = useContext(TodosContext);
 
   useEffect(() => {
-    if (filterCompleted) setTodosList(todos?.filter((i) => i?.completed));
-    else setTodosList(todos);
-  }, [todos, filterCompleted]);
+    // if (filterCompleted) setTodosList(todos?.filter((i) => i?.completed));
+    // else setTodosList(todos);
+    setTodosList(todos);
+  }, [todos]);
 
   const toggleCompletion = (id) => {
     setTodosList((list) => {
@@ -41,7 +42,11 @@ function Home() {
         <Filter state={filterCompleted} setState={setFilterCompleted} />
       </div>
       <div className=" h-full  flex items-center justify-center w-full">
-        <List todosList={todosList} toggleCompletion={toggleCompletion} />
+        <List
+          todosList={todosList}
+          toggleCompletion={toggleCompletion}
+          filterCompleted={filterCompleted}
+        />
       </div>
       <div className="flex justify-center">
         <AddTask addTask={addTask} />

@@ -4,8 +4,12 @@ function AddTask({ addTask }) {
   const [task, setTask] = useState("");
 
   const prepAndAddTask = () => {
-    addTask(task);
-    setTask("");
+    if (task.trim() === "") {
+      alert("task cannot be empty");
+    } else {
+      addTask(task);
+      setTask("");
+    }
   };
 
   return (

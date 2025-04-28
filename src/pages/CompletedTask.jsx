@@ -4,22 +4,28 @@ import List from "../component/List";
 
 function CompletedTask() {
   const [todosList, setTodosList] = useState([]);
-  const { todos } = useContext(TodosContext);
+  const { todos, saveTodos } = useContext(TodosContext);
 
   useEffect(() => {
-    setTodosList(todos?.filter((i) => i?.completed));
+    setTodosList(todos);
   }, [todos]);
 
   const toggleCompletion = (id) => {
     setTodosList((list) => {
-      return list.map((item) =>
+      const newList = list.map((item) =>
         item.id === id ? { ...item, completed: !item.completed } : item
       );
+      saveTodos(newList);
+      return newList;
     });
   };
   return (
     <div className=" h-full  flex items-center justify-center w-full p-4">
-      <List todosList={todosList} toggleCompletion={toggleCompletion} />
+      <List
+        todosList={todosList}
+        toggleCompletion={toggleCompletion}
+        filterCompleted={true}
+      />
     </div>
   );
 }
